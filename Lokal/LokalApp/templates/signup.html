@@ -1,0 +1,183 @@
+{% load static %}
+{% block headerinclude %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content />
+    <meta name="author" content />
+    <title>Sampol</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{% static 'LokalApp/assets/favicon.ico'%}" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="{% static 'LokalApp/css/styles1.css'%}" />
+    <link rel="stylesheet" href="{% static 'LokalApp/css/styles.css'%}" />
+{% endblock headerinclude %}
+
+{% block footerinclude %}
+	<script src="{% static 'LokalApp/js/bootstrap.min.js'%}"></script>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script src="{% static 'LokalApp/js/custom-general.js'%}"></script>
+    <script src="{% static 'LokalApp/js/scripts.js'%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+{% endblock footerinclude %}
+
+
+{% block content %}
+<main class="flex-shrink-0">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="/index">SAMPOL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+
+                    {% if user.is_authenticated and user.is_admin %}
+                    <li class="nav-item"> <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/feature">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contactUs">Contact Us</a></li>
+                </ul>
+                {% if user.is_authenticated %}
+                <li class="nav-item " style="list-style: none; padding-right: 20px;"> <b>Hello, {{user.firstname}}</b></li>
+                <a href="/cart" style="padding-right: 10px;"><img src="https://img.icons8.com/material-outlined/24/000000/shopping-cart--v1.png"/> </a>
+                    <a href="/logout" class="btn btn-outline-dark">Logout</a>
+                {% else %}
+                    <a href="/login" class="btn btn-outline-dark">Login</a>
+                    <a href="/signup" class="btn btn-outline-dark">Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <!-- Page content-->
+   <section class="vh-100" style="background-color: #202733;">
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+              <div class="card" style="border-radius: 1rem;">
+                <div class="row g-0">
+                  <div class="col-md-6 col-lg-5 d-none d-md-block">
+                    <img
+                      src="/static/LokalApp/img/new.png"
+                      alt="login form"
+                      class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%;"
+                    />
+                  </div>
+                  <di<div class="col-md-6 col-lg-7 d-flex align-items-center">
+                    <div class="card-body p-4 p-lg-5 text-black">
+                      <div class="container">
+                        <div class="row align-items-center justify-content-center">
+                          <div class="col-md-7 py-5">
+                            <h3>Sign Up</h3>
+                            <p class="mb-4">All input fields marked by <br>* are required.</p>
+                            <form method="post" action="#">
+                              {% csrf_token %}
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group first">
+                                    <label for="fname">First Name*</label>
+                                    <input type="text" class="form-control" placeholder="e.g. Bob" name="first_name" id="fname" required="true" value="{{ user.first_name }}">
+                                  </div>    
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group first">
+                                    <label for="lname">Last Name*</label>
+                                    <input type="text" class="form-control" placeholder="e.g. Baker" name="last_name" id="lname" required="true" value="{{ user.last_name }}">
+                                  </div>    
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-8">
+                                  <div class="form-group first">
+                                    <label for="username">Username</label>
+                                    <input type="username" class="form-control" name="username" placeholder="bobbaker" id="" required="true" >
+                                  </div>    
+                                </div>
+                              </div>
+      
+                              <div class="row">
+                                <div class="col-md-8">
+                                  <div class="form-group last mb-3">
+                                    <label for="password">Password*</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Password" id="password" required="true" value="{{ user.password }}">
+                                  </div>
+                                </div>
+                              </div>
+                         
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group first">
+                                    <label for="lname">Phone Number*</label>
+                                    <input type="text" class="form-control" name="phone_number" placeholder="09270389123" id="lname" required="true" value="{{ user.phone_number }}">
+                                  </div>    
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group first">
+                                    <label for="lname">Street*</label>
+                                    <input type="text" class="form-control" name="street" placeholder="Katipunan" id="lname" required="true" value="{{ user.street }}">
+                                  </div>    
+                                </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group first">
+                                      <label for="lname">City*</label>
+                                      <input type="text" class="form-control" name="city" placeholder="Cebu" id="lname" required="true" value="{{ user.city }}">
+                                    </div>    
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group first">
+                                      <label for="lname">Country*</label>
+                                      <input type="text" class="form-control" name="country" placeholder="Philippines" id="lname" required="true" value="{{ user.country }}">
+                                    </div>    
+                                  </div>
+                                </div>
+                        
+                              
+                              <div class="d-flex mb-5 mt-4 align-items-center">
+                                <div class="d-flex align-items-center">
+                           
+                              </div>
+                              </div>
+                
+                              
+                              <input type="submit" value="Register" class="btn px-5 btn-primary">
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+      
+                    </div>
+  
+                </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+</main>
+<!-- Footer-->
+<footer class="py-4 mt-auto" style="background-color:#800000 ;">
+    <div class="container px-5">
+        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+            <div class="col-auto"><div class="small m-0 text-white">Abangan, Arboladura, Gildo, Kapili, Laquinon -CSIT321</div></div>
+            <div class="col-auto">
+                <a class="link-light small" href="#!">Privacy</a>
+                <span class="text-white mx-1">&middot;</span>
+                <a class="link-light small" href="#!">Terms</a>
+                <span class="text-white mx-1">&middot;</span>
+                <a class="link-light small" href="/contactUs">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}

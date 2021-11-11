@@ -1,0 +1,122 @@
+{% load static %}
+{% block headerinclude %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Lokal</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'LokalApp/assets/favicon.ico'%}" />
+        <!-- Bootstrap icons-->
+        <link rel="stylesheet" href="{% static 'LokalApp/css/styles.css'%}" />
+     
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="{% static 'LokalApp/js/jquery.min.js' %}"></script>
+        <!-- Core theme CSS (includes Bootstrap)-->
+    
+{% endblock headerinclude %}
+
+
+{% block footerinclude %}
+	<script src="{% static 'LokalApp/js/bootstrap.min.js'%}"></script>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script src="{% static 'LokalApp/js/custom-general.js'%}"></script>
+    <script src="{% static 'LokalApp/scripts.js'%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+{% endblock footerinclude %}
+
+
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#!">Lokal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="/index">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">Contact Us</a></li>
+            </ul>
+    
+        </div>
+    </div>
+</nav>
+
+ <!-- Header-->
+ <header class="bg-dark py-5" style="
+        background-blend-mode: overlay;
+        background-color: black;
+        background-image: url('https://scontent.fceb1-3.fna.fbcdn.net/v/t1.15752-9/243917953_840191996643393_8310667383317156830_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=ae9488&_nc_eui2=AeGtxi6-TjQ8gaPfaoAZQrFPajC-G-FNBelqML4b4U0F6dZoCDpeKWAYTblEL5c73DeeNvD_kOUxcwREtThboqJJ&_nc_ohc=w3Xz00UzHxEAX8MRVNt&_nc_ht=scontent.fceb1-3.fna&oh=3045cb8456aea464a08ce9198b3937ff&oe=61828195');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 450px;
+    ">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Shop in style</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Shop Locally</p>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div class="contents">
+
+         
+              <div class="row align-items-center justify-content-center">
+                <div class="col-md-10 py-5" style="padding-left: 150px;">
+                  <h3>Edit Type</h3>
+                  <form action="#" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-6 py-2">
+                        <div class="form-group first ">
+                          <label for="fname">Name</label>
+                          <input type="text" class="form-control" placeholder="Tee" id="name" name="name" value="{{type.name}}">
+                        </div>    
+                      </div>
+                    </div>
+                
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                       
+                          <div class="form-group first">
+                              <label for="email">Description</label>
+                              <textarea class="form-control" id="description" rows="3" name="description">{{type.description}}</textarea>
+                            </div>
+                        </div>
+                      </div>
+                    
+                    <div class="d-flex mb-5 mt-5 align-items-center">
+                        <input type="submit" value="Edit Type" class="btn px-5 btn-primary"  >
+                    </div>
+      
+                  </form>
+                </div>
+              </div>
+         
+          </div>
+    </div>
+</div>
+<footer class="bg-dark py-4 mt-auto">
+  <div class="container px-5">
+      <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+          <div class="col-auto"><div class="small m-0 text-white">Aligato, Julius Ponte| Kapili, Joey CSIT327 F1-C1 AY 2021 - 2022</div></div>
+          <div class="col-auto">
+              <a class="link-light small" href="#!">Privacy</a>
+              <span class="text-white mx-1">&middot;</span>
+              <a class="link-light small" href="#!">Terms</a>
+              <span class="text-white mx-1">&middot;</span>
+              <a class="link-light small" href="#!">Contact</a>
+          </div>
+      </div>
+  </div>
+</footer>
+{% endblock %}
